@@ -41,8 +41,10 @@ public class PanucciSystem {
 
     private void caricaClienti(){
         Cliente c1= new Cliente("marco", "polo", "marcopolo@gmail.com", "via marco polo");
+        c1.setId(1);
         this.listaClienti.add(c1);
         Cliente c2= new Cliente("alfredo", "messina", "alfredomessina@gmail.com", "via alfredo messina");
+        c2.setId(2);
         this.listaClienti.add(c2);
     }
 
@@ -55,14 +57,16 @@ public class PanucciSystem {
 
         //Aggiungeremo un costo fisso di manodopera per ogni pizza?
         Pizza p1=new Pizza("capricciosa");
+        p1.setId(1);
         p1.addIngrediente(funghi);
         p1.addIngrediente(pomodoro);
         p1.addIngrediente(uovo);
-        p1.setId(1);
+
         m.put(1, p1);
         Pizza p2=new Pizza("margherita");
+        p2.setId(2);
         p2.addIngrediente(formaggio);
-        p1.setId(2);
+
         m.put(2,p2);
     }
 
@@ -83,6 +87,13 @@ public class PanucciSystem {
 
     public Menu getMenu() {
         return m;
+    }
+
+    public Cliente getCliente(int id){
+        for (Cliente c:listaClienti){
+            if(c.getId()==id) return c;
+        }
+        return null;
     }
 
 

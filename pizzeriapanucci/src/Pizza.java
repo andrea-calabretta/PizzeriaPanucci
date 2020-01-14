@@ -40,4 +40,17 @@ public class Pizza {
     public void addIngrediente(Ingrediente ingrediente) {
         ingredienti.add(ingrediente);
     }
+
+    @Override
+    public String toString() {
+        String elencoIngredienti="";
+        for (Ingrediente i: ingredienti){
+            elencoIngredienti+=i.getIngrediente();
+        }
+        return "Pizza{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", ingredienti=" + elencoIngredienti+
+                '}';
+    }
 }

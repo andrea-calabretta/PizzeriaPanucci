@@ -1,7 +1,7 @@
 public class RigaDiComanda {
     private Pizza pizza;
     private int quantita;
-    private double subtotale;
+    private float subtotale;
 
     public RigaDiComanda(Pizza pizza) {
         this.pizza=pizza;
@@ -19,8 +19,17 @@ public class RigaDiComanda {
         return subtotale;
     }
 
+    @Override
+    public String toString() {
+        return "RigaDiComanda{" +
+                "pizza=" + pizza +
+                ", quantita=" + quantita +
+                ", subtotale=" + subtotale +
+                '}';
+    }
 
     public float CalcolaSubTotale() {
-        return this.pizza.getPrezzo();
+        this.subtotale=this.pizza.getPrezzo();
+        return this.subtotale;
     }
 }

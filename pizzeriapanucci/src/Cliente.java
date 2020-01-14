@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Cliente {
+    private int id;
     private String nome;
     private String cognome;
     private String email;
@@ -16,6 +17,13 @@ public class Cliente {
         this.indirizzo=indirizzo;
         this.elencoComande = new LinkedList<Comanda>();
 
+    }
+
+    public void setId(int id){
+        this.id=id;
+    }
+    public int getId(){
+        return id;
     }
 
     public String getNome() {

@@ -1,5 +1,6 @@
 import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Comanda {
@@ -16,6 +17,7 @@ public class Comanda {
     public Comanda(String indirizzoConsegna, Date dataPrenotazione) {
         this.indirizzoConsegna=indirizzoConsegna;
         this.DataPrenotazione=DataPrenotazione;
+        righeDiComanda=new LinkedList<RigaDiComanda>();
     }
 
     public int getIdComanda() {
@@ -48,7 +50,8 @@ public class Comanda {
 
     public void addPizza(Pizza pizza) {
         RigaDiComanda rdc=new RigaDiComanda(pizza);
-        righeDiComanda.add(rdc);
+        //System.out.println(rdc.toString());
+        this.righeDiComanda.add(rdc);
 
 
     }
