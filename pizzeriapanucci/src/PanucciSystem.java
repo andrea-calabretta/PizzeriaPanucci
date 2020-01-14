@@ -1,17 +1,72 @@
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PanucciSystem {
-    private List<Cliente> listaClienti;
-    private List<Comanda> ElencoComande;
-    private Comanda ComandaCorrente;
-    private Menu menu;
+    /* istanza singleton di BookBoutique */
+    private static PanucciSystem singleton;
 
-    public PanucciSystem(List<Cliente> listaClienti, List<Comanda> elencoComande, Comanda comandaCorrente, Menu menu) {
-        this.listaClienti = listaClienti;
-        ElencoComande = elencoComande;
-        ComandaCorrente = comandaCorrente;
-        this.menu = menu;
+    private List<Cliente> listaClienti;
+    private List<Comanda> Comande;
+    private Comanda ComandaCorrente;
+    private Menu m;
+
+    /*
+     *********************
+     * GET ISTANZA SINGLETON E COSTRUTTORE
+     *********************
+     */
+
+    public static PanucciSystem getIstanza(){
+        if (singleton == null)
+            singleton = new PanucciSystem();
+        return singleton;
     }
+
+
+    public PanucciSystem() {
+        this.listaClienti = new LinkedList<Cliente>();
+        this.Comande = new LinkedList<Comanda>();
+        this.m = new Menu();
+        updateInitialData();
+    }
+
+    private void updateInitialData(){
+        caricaClienti();
+        caricaPizzeMenu();
+    }
+
+    //tutte le carica sono provvisorie
+
+    private void caricaClienti(){
+        Cliente c1= new Cliente("marco", "polo", "marcopolo@gmail.com", "via marco polo");
+        this.listaClienti.add(c1);
+        Cliente c2= new Cliente("alfredo", "messina", "alfredomessina@gmail.com", "via alfredo messina");
+        this.listaClienti.add(c2);
+    }
+
+    private void caricaPizzeMenu(){
+        //NOTA: Ha senso mettere quantità in Ingrediente? Si vedrà negli altri casi d'uso
+        Ingrediente funghi=new Ingrediente("funghi", (float) 2.5, 1);
+        Ingrediente pomodoro=new Ingrediente("pomodoro", (float) 1.5, 1);
+        Ingrediente formaggio=new Ingrediente("formaggio", (float) 1.5, 1);
+        Ingrediente uovo=new Ingrediente("uovo", (float) 1.5, 1);
+
+        //Aggiungeremo un costo fisso di manodopera per ogni pizza?
+        Pizza p1=new Pizza("capricciosa");
+        p1.addIngrediente(funghi);
+        p1.addIngrediente(pomodoro);
+        p1.addIngrediente(uovo);
+        p1.setId(1);
+        m.put(1, p1);
+        Pizza p2=new Pizza("margherita");
+        p2.addIngrediente(formaggio);
+        p1.setId(2);
+        m.put(2,p2);
+    }
+
+
 
 
     public List<Cliente> getListaClienti() {
@@ -19,7 +74,7 @@ public class PanucciSystem {
     }
 
     public List<Comanda> getElencoComande() {
-        return ElencoComande;
+        return Comande;
     }
 
     public Comanda getComandaCorrente() {
@@ -27,6 +82,56 @@ public class PanucciSystem {
     }
 
     public Menu getMenu() {
-        return menu;
+        return m;
     }
+
+
+    /* ************************************************************************************ */
+    /* **************************** USE CASE 1 : GESTISCI COMANDA ***************************** */
+    /* ************************************************************************************ */
+
+    /**
+     * Crea una nuovo comanda inizialmente priva di pizze ordinate
+     *
+     * @return la nuova comanda
+     */
+    public Comanda nuovaComanda(String indirizzoConsegna, Date DataPrenotazione){
+        this.ComandaCorrente = new Comanda(indirizzoConsegna, DataPrenotazione);
+        return this.ComandaCorrente;
+    }
+
+
+    public HashMap<Integer,Pizza> elencoPizze(){
+        HashMap<Integer,Pizza> pizzeDisponibili=m.getPizzeDisponibili();
+        return pizzeDisponibili;
+    }
+
+
+    public Pizza selectPizza (int idPizza){
+        Pizza pizza=m.getPizza(idPizza);
+        return pizza;
+    }
+
+    public List<Ingrediente> elencoIngredienti(Pizza pizza){
+        List<Ingrediente> elencoIngredienti = m.elencoIngredienti(pizza);
+        return elencoIngredienti;
+
+    }
+
+    public void confermaPizza(Pizza pizza){
+        this.ComandaCorrente.addPizza(pizza);
+    }
+
+    public float calcolaImporto(){
+        return this.ComandaCorrente.calcolaTotale();
+    }
+
+
+    public void confermaComanda(Cliente cliente){
+        cliente.confermaComanda(ComandaCorrente);
+        this.Comande.add(ComandaCorrente);
+    }
+
+
+
 }

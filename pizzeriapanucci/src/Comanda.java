@@ -11,15 +11,11 @@ public class Comanda {
     private String metodoPagamento;
     private List <RigaDiComanda> righeDiComanda;
 
-    public Comanda(int idComanda, Date DataPrenotazione, Date DataRitiro, double importo, String indirizzoConsegna, String metodoPagamento, List<RigaDiComanda> righeDiComanda) {
-        this.idComanda=idComanda;
-        this.righeDiComanda = righeDiComanda;
-        this.DataPrenotazione=DataPrenotazione;
-        this.DataRitiro= DataRitiro;
-        this.importo=importo;
+
+
+    public Comanda(String indirizzoConsegna, Date dataPrenotazione) {
         this.indirizzoConsegna=indirizzoConsegna;
-        this.metodoPagamento=metodoPagamento;
-        this.righeDiComanda=righeDiComanda;
+        this.DataPrenotazione=DataPrenotazione;
     }
 
     public int getIdComanda() {
@@ -50,6 +46,12 @@ public class Comanda {
         return righeDiComanda;
     }
 
+    public void addPizza(Pizza pizza) {
+        RigaDiComanda rdc=new RigaDiComanda(pizza);
+        righeDiComanda.add(rdc);
+
+
+    }
     @Override
     public String toString() {
         return "Comanda{" +
@@ -61,5 +63,15 @@ public class Comanda {
                 ", metodoPagamento='" + metodoPagamento + '\'' +
                 ", righeDiComanda=" + righeDiComanda +
                 '}';
+    }
+
+
+    public float calcolaTotale() {
+        float totale=0;
+        for(RigaDiComanda rdc : this.righeDiComanda)
+            totale+=rdc.CalcolaSubTotale();
+        return totale;
+
+
     }
 }

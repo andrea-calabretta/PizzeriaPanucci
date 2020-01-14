@@ -3,9 +3,8 @@ public class RigaDiComanda {
     private int quantita;
     private double subtotale;
 
-    public RigaDiComanda(Pizza pizza, int quantita) {
-        this.pizza = pizza;
-        this.quantita = quantita;
+    public RigaDiComanda(Pizza pizza) {
+        this.pizza=pizza;
     }
 
     public Pizza getPizza() {
@@ -18,5 +17,10 @@ public class RigaDiComanda {
 
     public double getSubtotale() {
         return subtotale;
+    }
+
+
+    public float CalcolaSubTotale() {
+        return this.pizza.getPrezzo();
     }
 }
