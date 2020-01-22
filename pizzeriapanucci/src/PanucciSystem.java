@@ -19,17 +19,20 @@ public class PanucciSystem {
      */
 
     public static PanucciSystem getIstanza(){
-        if (singleton == null)
+        if (singleton == null){
             singleton = new PanucciSystem();
+            singleton.listaClienti = new LinkedList<Cliente>();
+            singleton.Comande = new LinkedList<Comanda>();
+            singleton.m = new Menu();
+            singleton.updateInitialData();
+        }
+
         return singleton;
     }
 
 
-    public PanucciSystem() {
-        this.listaClienti = new LinkedList<Cliente>();
-        this.Comande = new LinkedList<Comanda>();
-        this.m = new Menu();
-        updateInitialData();
+    private PanucciSystem() {
+
     }
 
     private void updateInitialData(){

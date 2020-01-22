@@ -1,13 +1,12 @@
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Testmain {
     public static void main(String[] args) {
         System.out.println("Test Main");
 
 
-        PanucciSystem PnS=new PanucciSystem();
+        PanucciSystem PnS=PanucciSystem.getIstanza();
         //System.out.println(PnS.getListaClienti());
 
 
