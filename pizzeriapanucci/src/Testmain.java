@@ -1,14 +1,13 @@
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Testmain {
     public static void main(String[] args) {
         System.out.println("Test Main");
 
-
-        PanucciSystem PnS=PanucciSystem.getIstanza();
+        PanucciSystem PnS=PanucciSystem.getIstance();
         //System.out.println(PnS.getListaClienti());
-
 
 
         //Cliente Marco polo
@@ -16,7 +15,7 @@ public class Testmain {
         System.out.println(c);
 
         //UC1 Gestisci comanda, Marco Polo compra una capricciosa e una margherita
-        PnS.nuovaComanda(c.getIndirizzo(), new Date());
+        PnS.nuovaComanda(c.getIndirizzo());
 
         System.out.println("MENU' PIZZE");
         PnS.elencoPizze().forEach((key1, value) -> {
@@ -33,9 +32,10 @@ public class Testmain {
             Pizza pizza=PnS.selectPizza(idPizza);
             System.out.println("Hai selezionato la pizza numero " + idPizza);
             System.out.println("Riepilogo Ingredienti pizza " + pizza.getNome());
+            List<Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pizza);
 
-            for(Ingrediente i: PnS.elencoIngredienti(pizza)){
-                System.out.println(i.getIngrediente());
+            for(Ingrediente ingrediente: elencoIngredienti){
+                System.out.println(ingrediente.getIngrediente());
             };
             System.out.println("Vuoi confermare la pizza " + pizza.getNome()+ "? (Y|N)");
             Scanner input2 = new Scanner(System.in);
