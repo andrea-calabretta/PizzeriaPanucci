@@ -1,7 +1,4 @@
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class PanucciSystem {
     /* istanza singleton di BookBoutique */
@@ -53,10 +50,10 @@ public class PanucciSystem {
 
     private void caricaPizzeMenu(){
         //NOTA: Ha senso mettere quantità in Ingrediente? Si vedrà negli altri casi d'uso
-        Ingrediente funghi=new Ingrediente("funghi", (float) 2.5, 1);
-        Ingrediente pomodoro=new Ingrediente("pomodoro", (float) 1.5, 1);
-        Ingrediente formaggio=new Ingrediente("formaggio", (float) 1.5, 1);
-        Ingrediente uovo=new Ingrediente("uovo", (float) 1.5, 1);
+        Ingrediente funghi=new Ingrediente("funghi", (float) 2.5);
+        Ingrediente pomodoro=new Ingrediente("pomodoro", (float) 1.5);
+        Ingrediente formaggio=new Ingrediente("formaggio", (float) 1.5);
+        Ingrediente uovo=new Ingrediente("uovo", (float) 1.5);
 
         //Aggiungeremo un costo fisso di manodopera per ogni pizza?
         Pizza p1=new Pizza("capricciosa");
@@ -72,6 +69,7 @@ public class PanucciSystem {
 
         m.put(2,p2);
     }
+
 
 
     public List<Cliente> getListaClienti() {
@@ -144,6 +142,31 @@ public class PanucciSystem {
         this.comande.add(comandaCorrente);
     }
 
+    public Ingrediente nuovoIngrediente(String nome, float prezzo){
+        Ingrediente ingrediente = this.m.nuovoIngrediente(nome, prezzo);
+        return  ingrediente;
+    }
 
+    public void addIngrediente(Integer id, Ingrediente ingrediente){
+        this.m.addIngrediente(id, ingrediente);
+    }
+
+    public Pizza nuovaPizza(String nome){
+        Pizza pc = this.m.nuovaPizza(nome);
+        return pc;
+    }
+
+    public HashMap<Integer,Ingrediente> getIngredientiDisponibili(){
+       return m.getListIngredientiDisponibili();
+    }
+
+    public void addToPizza(Pizza pizza, Integer idIngrediente){
+    this.m.addToPizza(pizza, idIngrediente);
+
+    }
+
+    public void confermaPizzaAdmin(Integer idPizza, Pizza pizza){
+        m.confermaPizza(idPizza, pizza);
+    }
 
 }
