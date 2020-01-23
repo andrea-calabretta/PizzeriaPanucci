@@ -1,32 +1,34 @@
 public class Ingrediente {
     private String nome;
-    private float costoIngrediente;
-    private int quantita;
+    private float prezzo;
 
-    public Ingrediente(String nome, float costoIngrediente, int quantita) {
+
+    public Ingrediente(String nome, float prezzo) {
         this.nome = nome;
-        this.costoIngrediente=costoIngrediente;
-        this.quantita=quantita;
+        this.prezzo= prezzo;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public double getCostoIngrediente() {
-        return costoIngrediente;
+    public float getCostoIngrediente() {
+        return prezzo;
     }
 
-    public int getQuantita() {
-        return quantita;
-    }
 
+    @Override
+    public String toString() {
+        return "Ingrediente{" +
+                "nome='" + nome + '\'' +
+                ", prezzo=" + prezzo +
+                '}';
+    }
 
     public String getIngrediente() {
         return "Ingrediente{" +
                 "nome='" + nome + '\'' +
-                ", prezzo=" + costoIngrediente +
-                ", quantità=" + quantita +
+                ", prezzo=" + prezzo +
                 '}';
     }
 }

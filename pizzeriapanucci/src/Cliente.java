@@ -7,7 +7,6 @@ public class Cliente {
     private String cognome;
     private String email;
     private String indirizzo;
-    private List<Comanda> elencoComande;
 
 
     public Cliente(String nome, String cognome, String email, String indirizzo) {
@@ -15,7 +14,6 @@ public class Cliente {
         this.cognome = cognome;
         this.email=email;
         this.indirizzo=indirizzo;
-        this.elencoComande = new LinkedList<Comanda>();
 
     }
 
@@ -42,9 +40,6 @@ public class Cliente {
         return indirizzo;
     }
 
-    public List<Comanda> getElencoComande() {
-        return elencoComande;
-    }
 
 
     @Override
@@ -57,7 +52,4 @@ public class Cliente {
                 '}';
     }
 
-    public void confermaComanda(Comanda comandaCorrente) {
-        this.elencoComande.add(comandaCorrente);
-    }
 }
