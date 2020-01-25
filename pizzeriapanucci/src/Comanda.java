@@ -85,7 +85,7 @@ public class Comanda {
 
 
     public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento) {
-        metodopagamento=new Pagamento();
+        metodopagamento=Pagamento.getIstance();
         return metodopagamento.effettuaPagamento(metodoPagamento, infoPagamento, prezzoScontato);
     }
 

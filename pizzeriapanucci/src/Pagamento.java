@@ -4,6 +4,20 @@ public class Pagamento{
     private float importo;
     private MetodoPagamento metodoDiPagamento;
 
+    private static Pagamento instance;
+    private static final Object lock = Pagamento.class;
+    private Pagamento() { }
+
+    public static Pagamento getIstance(){
+        synchronized (lock){
+            if (instance == null){
+                instance = new Pagamento();
+
+            }
+        }
+        return instance;
+    }
+
     public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento, float totaleDaPagare) {
         this.importo = totaleDaPagare;
         if(metodoPagamento == "cartadebito") {

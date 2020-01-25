@@ -36,9 +36,15 @@ public class Pizza {
     }
 
     public void addIngrediente(Ingrediente ingrediente) {
-        ingredientiPizza.add(ingrediente);
+        if(contains(ingrediente)==false) {
+            ingredientiPizza.add(ingrediente);
+        }
     }
 
+    public boolean contains(Ingrediente ingrediente){
+        if(ingredientiPizza.contains(ingrediente)) return true;
+        else return false;
+    }
     @Override
     public String toString() {
         String elencoIngredienti="";
