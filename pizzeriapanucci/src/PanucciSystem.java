@@ -183,4 +183,15 @@ public class PanucciSystem {
         listaClienti.add(cliente);
     }
 
+    public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento) {
+        return comandaCorrente.effettuaPagamento(metodoPagamento, infoPagamento);
+    }
+
+    public float associaSconto() {
+            return comandaCorrente.associaSconto();
+
+    }
+
+
+
 }

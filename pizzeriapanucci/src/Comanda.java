@@ -7,11 +7,14 @@ public class Comanda {
     private int idComanda;
     private Date DataPrenotazione;
     private Date DataRitiro;
-    private double importo;
+    private float importo;
     private String indirizzoConsegna;
-    private String metodoPagamento;
+    private String pagamento;
     private List <RigaDiComanda> righeDiComanda;
     private Cliente cliente;
+    private Pagamento metodopagamento;
+    private float prezzoScontato;
+    private ScontoStrategyFactory scontostrategyfactory;
 
 
 
@@ -20,8 +23,10 @@ public class Comanda {
         this.DataPrenotazione=dataPrenotazione;
         this.cliente=cliente;
         righeDiComanda=new LinkedList<RigaDiComanda>();
+        scontostrategyfactory=ScontoStrategyFactory.getIstance();
 
     }
+
 
     public int getIdComanda() {
         return idComanda;
@@ -35,7 +40,7 @@ public class Comanda {
         return DataRitiro;
     }
 
-    public double getImporto() {
+    public float getImporto() {
         return importo;
     }
 
@@ -43,8 +48,8 @@ public class Comanda {
         return indirizzoConsegna;
     }
 
-    public String getMetodoPagamento() {
-        return metodoPagamento;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public List<RigaDiComanda> getRigheDiComanda() {
@@ -65,18 +70,35 @@ public class Comanda {
                 ", DataRitiro=" + DataRitiro +
                 ", importo=" + importo +
                 ", indirizzoConsegna='" + indirizzoConsegna + '\'' +
-                ", metodoPagamento='" + metodoPagamento + '\'' +
+                ", metodoPagamento='" + pagamento + '\'' +
                 ", righeDiComanda=" + righeDiComanda +
                 '}';
     }
 
 
     public float calcolaTotale() {
-        float totale=0;
+        this.importo=0;
         for(RigaDiComanda rdc : this.righeDiComanda)
-            totale+=rdc.CalcolaSubTotale();
-        return totale;
-
-
+            this.importo+=rdc.CalcolaSubTotale();
+        return importo;
     }
+
+
+    public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento) {
+        metodopagamento=new Pagamento();
+        return metodopagamento.effettuaPagamento(metodoPagamento, infoPagamento, prezzoScontato);
+    }
+
+    public void setPrezzoScontato(float prezzoScontato) {
+        this.prezzoScontato = importo;
+    }
+
+    public float associaSconto() {
+        Sconto s=scontostrategyfactory.getSconto();
+        prezzoScontato = s.calcolaImportoScontato(this.calcolaTotale());
+        this.prezzoScontato=prezzoScontato;
+        return prezzoScontato;
+    }
+
+
 }
