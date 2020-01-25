@@ -1,10 +1,15 @@
 import java.util.Scanner;
 
-public class testAddIngrediente {
+public class TestAddIngrediente {
     public static void main(String[] args) {
 
         System.out.println("Test Add Ingrediente");
         PanucciSystem PnS=PanucciSystem.getIstance();
+
+        System.out.println("Ecco gli ingredienti disponibili nel Menù:");
+
+
+
 
         System.out.println("Inserisci nome ingrediente:");
         Scanner input = new Scanner(System.in);
@@ -16,8 +21,16 @@ public class testAddIngrediente {
         Ingrediente ingrediente = PnS.nuovoIngrediente(nome, prezzo);
         System.out.println("Inserisci ID dell'ingrediente:");
         Integer idIngrediente = input.nextInt();
-        PnS.addIngrediente(idIngrediente,ingrediente);
-        ingrediente.toString();
+        try{
+            PnS.addIngrediente(idIngrediente,ingrediente);
+            System.out.println("Ingrediente Inserito");
+            System.out.println(ingrediente.toString());
+        }
+        catch(Exception ex){
+            System.out.println("Id non disponibile");
+        }
+
+
 
     }
 }

@@ -28,7 +28,7 @@ public class Pizza {
         return this.ingredientiPizza;
     }
 
-    public float getPrezzo() {
+    public float getImporto() {
         this.importo = 0;
         for(Ingrediente i : this.ingredientiPizza)
             this.importo+=i.getCostoIngrediente();

@@ -47,30 +47,26 @@ public class Menu {
 
     }
 
-    public void addIngrediente(Integer ID, Ingrediente ingrediente){
-        listIngredientiDisponibili.put(ID, ingrediente);
-
+    public Ingrediente findIngrediente (Integer idIngrediente){
+        Ingrediente ingrediente=listIngredientiDisponibili.get(idIngrediente);
+        return ingrediente;
     }
 
-    public Pizza nuovaPizza(String nome){
-        Pizza pc = new Pizza(nome);
-        return pc;
+    public void addIngrediente(Integer codiceIngrediente, Ingrediente ingrediente){
+        listIngredientiDisponibili.put(codiceIngrediente, ingrediente);
     }
 
-    public HashMap <Integer,Ingrediente> getListIngredientiDisponibili(){
+    public HashMap <Integer,Ingrediente> getIngredientiDisponibili() {
         return this.listIngredientiDisponibili;
     }
 
-    public void addToPizza(Pizza pizza, Integer idIngrediente){
-        Ingrediente ingrediente = listIngredientiDisponibili.get(idIngrediente);
-        pizza.addIngrediente(ingrediente);
-    }
 
 
 
-    //è Admin che conferma la pizza
-    public void confermaPizza(Integer idPizza, Pizza pizza){
-    listPizza.put(idPizza, pizza);
+
+
+    public void addPizzaToMenu(Integer idPizza, Pizza pizza){
+        listPizza.put(idPizza, pizza);
     }
 }
 

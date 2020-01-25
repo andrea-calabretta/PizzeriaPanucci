@@ -11,13 +11,16 @@ public class Comanda {
     private String indirizzoConsegna;
     private String metodoPagamento;
     private List <RigaDiComanda> righeDiComanda;
+    private Cliente cliente;
 
 
 
-    public Comanda(String indirizzoConsegna, Date dataPrenotazione) {
+    public Comanda(Cliente cliente, String indirizzoConsegna, Date dataPrenotazione) {
         this.indirizzoConsegna=indirizzoConsegna;
-        this.DataPrenotazione=DataPrenotazione;
+        this.DataPrenotazione=dataPrenotazione;
+        this.cliente=cliente;
         righeDiComanda=new LinkedList<RigaDiComanda>();
+
     }
 
     public int getIdComanda() {
@@ -48,9 +51,8 @@ public class Comanda {
         return righeDiComanda;
     }
 
-    public void addPizza(Pizza pizza) {
-        RigaDiComanda rdc=new RigaDiComanda(pizza);
-        //System.out.println(rdc.toString());
+    public void addPizza(Pizza pizza, int quantita) {
+        RigaDiComanda rdc=new RigaDiComanda(pizza, quantita);
         this.righeDiComanda.add(rdc);
 
 

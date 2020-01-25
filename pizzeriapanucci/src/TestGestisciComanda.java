@@ -2,26 +2,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Testmain {
+public class TestGestisciComanda {
     public static void main(String[] args) {
-        System.out.println("Test Main");
+        System.out.println("Test Gestisci Comanda");
 
         PanucciSystem PnS=PanucciSystem.getIstance();
-        //System.out.println(PnS.getListaClienti());
 
 
-        //Cliente Marco polo
+
+
         Cliente c=PnS.getCliente(1);
-        System.out.println(c);
+        System.out.println("Benvenuto " + c);
 
-        //UC1 Gestisci comanda, Marco Polo compra una capricciosa e una margherita
-        PnS.nuovaComanda(c.getIndirizzo());
+        //UC1 Gestisci comanda, compra una capricciosa e una margherita
+
+        PnS.nuovaComanda(c, c.getIndirizzo());
 
         System.out.println("MENU' PIZZE");
         PnS.elencoPizze().forEach((key1, value) -> {
             Integer key = key1;
             Pizza pizza=value;
-            //System.out.println(key);
+
             System.out.println(pizza.toString());
         });
 
@@ -46,8 +47,10 @@ public class Testmain {
                     System.out.println("Pizza annullata!");
                     break;
                 case 'Y':
+                    System.out.println("Seleziona la quantità della pizza " + pizza.getNome()+ ":");
+                    Integer quantita=input2.nextInt();
 
-                    PnS.confermaPizza(pizza);
+                    PnS.confermaPizzaComanda(pizza, quantita);
 
                     System.out.println("Pizza confermata");
                     System.out.println("Importo Pizza="+PnS.calcolaImporto()+" euro");
@@ -60,7 +63,7 @@ public class Testmain {
                             break;
                         case 'Y':
 
-                            PnS.confermaComanda(c);
+                            PnS.confermaComanda();
                             System.out.println("comanda confermata!");
                             break;
                         default:
