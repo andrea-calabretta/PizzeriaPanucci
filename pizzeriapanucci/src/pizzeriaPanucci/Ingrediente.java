@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public class Ingrediente {
     private String nome;
     private float prezzo;

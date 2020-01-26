@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 import java.util.LinkedList;
 
 public class ScontoComposto extends Sconto{

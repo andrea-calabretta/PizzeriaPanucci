@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+package pizzeriaPanucci;
 
 public class ScontoStrategyFactory {
     private static ScontoStrategyFactory instance;

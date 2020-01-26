@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public class RigaDiComanda {
     private Pizza pizza;
     private int quantita;

@@ -1,4 +1,11 @@
-import java.util.List;
+package interfaccia;
+
+import pizzeriaPanucci.Cliente;
+import pizzeriaPanucci.Ingrediente;
+import pizzeriaPanucci.PanucciSystem;
+import pizzeriaPanucci.Pizza;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TestGestisciComandaConScontoEPagamento {
@@ -28,12 +35,18 @@ public class TestGestisciComandaConScontoEPagamento {
             Pizza pc = PnS.selectPizza(idPizza);
             System.out.println("Hai selezionato la pizza numero " + idPizza);
             System.out.println("Riepilogo Ingredienti pizza " + pc.getNome());
-            List<Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pc);
+            //List<pizzeriaPanucci.Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pc);
+            HashMap<Integer, Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pc);
 
-            for (Ingrediente ingrediente : elencoIngredienti) {
+            /*for (pizzeriaPanucci.Ingrediente ingrediente : elencoIngredienti) {
                 System.out.println(ingrediente.getIngrediente());
-            }
-            ;
+            };*/
+            elencoIngredienti.forEach((key1, value) -> {
+                Integer key = key1;
+                Ingrediente i=value;
+                System.out.print("ID: "+key + " ");
+                System.out.println(i.toString());
+            });
 
             System.out.println("Vuoi modificare la pizza " + pc.getNome() + "? (Y|N)");
             Scanner scannermodifica = new Scanner(System.in);
@@ -145,33 +158,55 @@ public class TestGestisciComandaConScontoEPagamento {
 
                     break;
                 case 'Y':
-                    System.out.println("Ecco gli ingredienti disponibili nel Menù:");
+                    Scanner risModifica=new Scanner(System.in);
+                    System.out.println("Digita 1: per aggiungere ingredienti, 2: rimuovere ingredienti");
+                    Integer scelta =risModifica.nextInt();
+                    if (scelta==1){
+                        System.out.println("Ecco gli ingredienti disponibili nel Menù:");
+
+                        PnS.getIngredientiDisponibili().forEach((key1, value) -> {
+                            Integer key = key1;
+                            Ingrediente ingrediente2 = value;
+                            System.out.print("ID: " + key + " ");
+                            System.out.println(ingrediente2.toString());
+                        });
+                        do {
+                            System.out.println("Inserisci ID ingrediente da aggiungere:");
+                            Scanner id = new Scanner(System.in);
+                            Integer idIngrediente = id.nextInt();
+                            PnS.addToPizza(idIngrediente);
+                            System.out.println("Vuoi inserire un altro ingrediente? (Y|N)");
+                            res = input.next().charAt(0);
+
+                        } while (res != 'N');
+                    } else if(scelta==2){
+                        do {
+                            System.out.println("Inserisci ID ingrediente da rimuovere:");
+                            Scanner id = new Scanner(System.in);
+                            Integer idIngrediente = id.nextInt();
+                            PnS.removeToPizza(idIngrediente);
+                            System.out.println("Vuoi rimuovere un altro ingrediente? (Y|N)");
+                            res = input.next().charAt(0);
+
+                        } while (res != 'N');
+
+                    }
 
 
-                    PnS.getIngredientiDisponibili().forEach((key1, value) -> {
-                        Integer key = key1;
-                        Ingrediente ingrediente2 = value;
-                        System.out.print("ID: " + key + " ");
-                        System.out.println(ingrediente2.toString());
-                    });
-                    char ris;
-                    do {
-                        System.out.println("Inserisci ID ingrediente da aggiungere:");
-                        Scanner id = new Scanner(System.in);
-                        Integer idIngrediente = id.nextInt();
-                        PnS.addToPizza(idIngrediente);
-                        System.out.println("Vuoi inserire un altro ingrediente? (Y|N)");
-                        res = input.next().charAt(0);
-
-                    } while (res != 'N');
 
                     System.out.println("Riepilogo Ingredienti pizza " + pc.getNome());
-                    List<Ingrediente> elencoIngredientiPizza = PnS.elencoIngredienti(pc);
+                    //List<pizzeriaPanucci.Ingrediente> elencoIngredientiPizza = PnS.elencoIngredienti(pc);
+                    elencoIngredienti = PnS.elencoIngredienti(pc);
 
-                    for (Ingrediente i : elencoIngredientiPizza) {
+                    /*for (pizzeriaPanucci.Ingrediente i : elencoIngredientiPizza) {
                         System.out.println(i.getIngrediente());
-                    }
-                    ;
+                    };*/
+                    elencoIngredienti.forEach((key1, value) -> {
+                        Integer key = key1;
+                        Ingrediente i=value;
+                        System.out.print("ID: "+key + " ");
+                        System.out.println(i.toString());
+                    });
 
                     System.out.println("Vuoi confermare la pizza " + pc.getNome() + "? (Y|N)");
 

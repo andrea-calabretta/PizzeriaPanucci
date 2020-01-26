@@ -1,7 +1,13 @@
+package interfaccia;
+
+import pizzeriaPanucci.Cliente;
+import pizzeriaPanucci.PanucciSystem;
+import pizzeriaPanucci.Pizza;
+
 public class TestScontoEPagamento {
     public static void main(String[] args) {
-        PanucciSystem PnS=PanucciSystem.getIstance();
-        System.out.println("Test Pagamento e sconto");
+        PanucciSystem PnS= PanucciSystem.getIstance();
+        System.out.println("Test pizzeriaPanucci.Pagamento e sconto");
         Cliente c=PnS.getCliente(1);
         PnS.nuovaComanda(c, c.getIndirizzo());
 

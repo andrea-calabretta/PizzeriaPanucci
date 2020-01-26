@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public abstract class Carta implements MetodoPagamento{
     private String nome;
     private String numero;

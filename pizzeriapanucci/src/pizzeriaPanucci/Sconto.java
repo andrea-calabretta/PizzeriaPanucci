@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public abstract class Sconto {
     protected String nome;
 

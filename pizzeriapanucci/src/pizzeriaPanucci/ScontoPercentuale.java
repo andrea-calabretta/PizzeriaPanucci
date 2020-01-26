@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public class ScontoPercentuale extends Sconto {
     private float soglia;
     private float percentuale;

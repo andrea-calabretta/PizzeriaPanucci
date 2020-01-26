@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public class PayPal implements MetodoPagamento{
     private String username;
     private String password;

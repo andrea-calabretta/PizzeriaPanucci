@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 import java.util.*;
 
 public class PanucciSystem {
@@ -48,7 +50,7 @@ public class PanucciSystem {
     }
 
     private void caricaPizzeMenu(){
-        //NOTA: Ha senso mettere quantità in Ingrediente? Si vedrà negli altri casi d'uso
+        //NOTA: Ha senso mettere quantità in pizzeriaPanucci.Ingrediente? Si vedrà negli altri casi d'uso
         Ingrediente funghi=new Ingrediente("funghi", (float) 2.5);
         Ingrediente pomodoro=new Ingrediente("pomodoro", (float) 1.5);
         Ingrediente formaggio=new Ingrediente("formaggio", (float) 1.5);
@@ -121,8 +123,8 @@ public class PanucciSystem {
         return pc;
     }
 
-    public List<Ingrediente> elencoIngredienti(Pizza pizza){
-        List<Ingrediente> elencoIngredienti = m.elencoIngredienti(pizza);
+    public HashMap<Integer, Ingrediente> elencoIngredienti(Pizza pizza){
+        HashMap<Integer, Ingrediente> elencoIngredienti = m.elencoIngredienti(pizza);
         return elencoIngredienti;
 
     }
@@ -189,6 +191,19 @@ public class PanucciSystem {
 
     public float associaSconto() {
             return comandaCorrente.associaSconto();
+
+    }
+
+
+    public void removeToPizza(Integer idIngrediente){
+        try{
+            pc.removeIngrediente(idIngrediente);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+
 
     }
 

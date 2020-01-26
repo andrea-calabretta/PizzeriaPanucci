@@ -1,5 +1,11 @@
-import java.util.Date;
-import java.util.List;
+package interfaccia;
+
+import pizzeriaPanucci.Cliente;
+import pizzeriaPanucci.Ingrediente;
+import pizzeriaPanucci.PanucciSystem;
+import pizzeriaPanucci.Pizza;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TestGestisciComanda {
@@ -33,11 +39,20 @@ public class TestGestisciComanda {
             Pizza pizza=PnS.selectPizza(idPizza);
             System.out.println("Hai selezionato la pizza numero " + idPizza);
             System.out.println("Riepilogo Ingredienti pizza " + pizza.getNome());
-            List<Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pizza);
+            //List<pizzeriaPanucci.Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pizza);
+            HashMap<Integer, Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pizza);
 
-            for(Ingrediente ingrediente: elencoIngredienti){
+            PnS.getIngredientiDisponibili().forEach((key1, value) -> {
+                Integer key = key1;
+                Ingrediente ingrediente2 = value;
+                System.out.print("ID: " + key + " ");
+                System.out.println(ingrediente2.toString());
+            });
+
+            /*for(pizzeriaPanucci.Ingrediente ingrediente: elencoIngredienti){
                 System.out.println(ingrediente.getIngrediente());
-            };
+            };*/
+
             System.out.println("Vuoi confermare la pizza " + pizza.getNome()+ "? (Y|N)");
             Scanner input2 = new Scanner(System.in);
             char res=input2.next().charAt(0);

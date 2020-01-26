@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 public class CartaDiDebito extends Carta {
 
     public CartaDiDebito(String nome, String cognome, String cvv, String scadenza) {

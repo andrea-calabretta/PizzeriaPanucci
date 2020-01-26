@@ -1,3 +1,5 @@
+package pizzeriaPanucci;
+
 import java.util.Arrays;
 
 public class Pagamento{

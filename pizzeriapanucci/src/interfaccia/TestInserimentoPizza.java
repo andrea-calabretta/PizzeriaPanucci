@@ -1,12 +1,16 @@
+package interfaccia;
+
+import pizzeriaPanucci.Ingrediente;
+import pizzeriaPanucci.PanucciSystem;
+import pizzeriaPanucci.Pizza;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class TestInserimentoPizza {
     public static void main(String[] args) {
 
-        PanucciSystem PnS=PanucciSystem.getIstance();
+        PanucciSystem PnS= PanucciSystem.getIstance();
         System.out.println("Test Inserimento Pizza");
 
 
@@ -39,11 +43,17 @@ public class TestInserimentoPizza {
 
 
         System.out.println("Riepilogo Ingredienti pizza " + pc.getNome());
-        List<Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pc);
+        HashMap<Integer, Ingrediente> elencoIngredienti = PnS.elencoIngredienti(pc);
 
-        for(Ingrediente i: elencoIngredienti){
+        /*for(pizzeriaPanucci.Ingrediente i: elencoIngredienti){
             System.out.println(i.getIngrediente());
-        };
+        };*/
+        elencoIngredienti.forEach((key1, value) -> {
+            Integer key = key1;
+            Ingrediente i=value;
+            System.out.print("ID: "+key + " ");
+            System.out.println(i.toString());
+        });
         System.out.println("Vuoi confermare la pizza? (Y|N)");
 
         res=input2.next().charAt(0);

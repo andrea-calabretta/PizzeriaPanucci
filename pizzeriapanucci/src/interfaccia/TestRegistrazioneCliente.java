@@ -1,10 +1,13 @@
+package interfaccia;
+
+import pizzeriaPanucci.PanucciSystem;
+
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class TestRegistrazioneCliente {
     public static void main(String[] args) {
-        PanucciSystem PnS=PanucciSystem.getIstance();
-        System.out.println("Test Registrazione Cliente");
+        PanucciSystem PnS= PanucciSystem.getIstance();
+        System.out.println("Test Registrazione pizzeriaPanucci.Cliente");
 
 
         System.out.println("Inserisci il tuo nome:");
