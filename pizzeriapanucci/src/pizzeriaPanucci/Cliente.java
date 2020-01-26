@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Cliente {
-    private static final AtomicInteger count = new AtomicInteger(0);
-    private final int id;
+    //private static final AtomicInteger count = new AtomicInteger(0);
+    //private final int id;
+    private int id;
     private String nome;
     private String cognome;
     private String email;
@@ -14,16 +15,20 @@ public class Cliente {
 
 
     public Cliente(String nome, String cognome, String email, String indirizzo) {
+        //this.id=id;
         this.nome=nome;
         this.cognome = cognome;
         this.email=email;
         this.indirizzo=indirizzo;
-        id = count.incrementAndGet();
+        //id = count.incrementAndGet();
     }
 
 
     public int getId(){
         return id;
+    }
+    public void setId(int id){
+        this.id=id;
     }
 
     public String getNome() {

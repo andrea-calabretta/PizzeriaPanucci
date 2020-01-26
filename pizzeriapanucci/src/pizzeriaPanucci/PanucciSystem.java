@@ -1,18 +1,22 @@
 package pizzeriaPanucci;
 
+import com.mysql.cj.xdevapi.Client;
+
 import java.util.*;
 
 public class PanucciSystem {
     /* istanza singleton di BookBoutique */
     private static PanucciSystem instance;
     private static final Object lock = PanucciSystem.class;
-    private PanucciSystem() { }
+    private PanucciSystem() {
+    }
 
     private List<Cliente> listaClienti;
     private List<Comanda> comande;
     private Comanda comandaCorrente;
     private Menu m;
     private Pizza pc;
+
 
     /*
      *********************
@@ -40,13 +44,22 @@ public class PanucciSystem {
         caricaPizzeMenu();
     }
 
-    //tutte le carica sono provvisorie
+
 
     private void caricaClienti(){
-        Cliente c1= new Cliente("mario", "rossi", "mrossi@gmail.com", "via marco polo");
+        DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+        List<Cliente> clienti=clienteDAO.getAllClienti();
+        for (Cliente c: clienti){
+            this.listaClienti.add(c);
+        }
+
+
+        /*Cliente c1= new Cliente("mario", "rossi", "mrossi@gmail.com", "via marco polo");
         this.listaClienti.add(c1);
         Cliente c2= new Cliente("alfredo", "messina", "alfredomessina@gmail.com", "via alfredo messina");
-        this.listaClienti.add(c2);
+        this.listaClienti.add(c2);*/
+
     }
 
     private void caricaPizzeMenu(){
@@ -180,9 +193,13 @@ public class PanucciSystem {
         m.addPizzaToMenu(codicePizza, pc);
     }
 
-    public void registrazioneCliente (String nome, String cognome, String telefono, String mail){
-        Cliente cliente = new Cliente(nome, cognome, telefono, mail);
+    public int registrazioneCliente (String nome, String cognome, String email, String indirizzo){
+        Cliente cliente=new Cliente(nome, cognome, email, indirizzo);
+        DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+        int id=clienteDAO.createCliente(cliente);
         listaClienti.add(cliente);
+        return id;
     }
 
     public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento) {

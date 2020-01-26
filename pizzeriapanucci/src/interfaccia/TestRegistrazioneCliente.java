@@ -1,8 +1,11 @@
 package interfaccia;
 
+import pizzeriaPanucci.Cliente;
 import pizzeriaPanucci.PanucciSystem;
 
 import java.util.Scanner;
+import java.lang.Integer;
+
 
 public class TestRegistrazioneCliente {
     public static void main(String[] args) {
@@ -15,16 +18,16 @@ public class TestRegistrazioneCliente {
         String nome = input.nextLine();
         System.out.println("Inserisci il tuo cognome :");
         String cognome = input.nextLine();
-        System.out.println("Inserisci il tuo numero telefonico :");
-        String telefono = input.nextLine();
         System.out.println("Inserisci la tua mail :");
+        String telefono = input.nextLine();
+        System.out.println("Inserisci il tuo indirizzo :");
         String mail = input.nextLine();
 
-
         try {
-            PnS.registrazioneCliente(nome, cognome, telefono, mail);
-            System.out.println("Inserimento avvenuto, riepilogo utente");
-            System.out.println(PnS.getCliente(3).toString());
+            int id=PnS.registrazioneCliente(nome, cognome, telefono, mail);
+            System.out.println("Inserimento avvenuto");
+
+
         }
         catch (Exception ex){
             ex.printStackTrace();
