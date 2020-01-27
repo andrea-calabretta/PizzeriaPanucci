@@ -2,8 +2,8 @@ package pizzeriaPanucci;
 
 public class CartaDiDebito extends Carta {
 
-    public CartaDiDebito(String nome, String cognome, String cvv, String scadenza) {
-        super(nome, cognome, cvv, scadenza);
+    public CartaDiDebito(String nome, String numero, String cvv, String scadenza) {
+        super(nome, numero, cvv, scadenza);
     }
 
     @Override

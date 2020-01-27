@@ -6,7 +6,7 @@ public abstract class Carta implements MetodoPagamento{
     private String cvv;
     private String scadenza;
 
-    public Carta(String nome, String cognome, String cvv, String scadenza) {
+    public Carta(String nome, String numero, String cvv, String scadenza) {
         this.nome = nome;
         this.numero= numero;
         this.cvv = cvv;

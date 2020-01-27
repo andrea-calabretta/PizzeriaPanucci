@@ -8,7 +8,7 @@ import pizzeriaPanucci.Pizza;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TestModificaPizza {
+public class ModificaPizza {
     public static void main(String[] args) {
         System.out.println("Test Modifica Pizza");
 

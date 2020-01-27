@@ -7,7 +7,6 @@ import java.util.List;
 public class Comanda {
     private int idComanda;
     private Date DataPrenotazione;
-    private Date DataRitiro;
     private float importo;
     private String indirizzoConsegna;
     private String pagamento;
@@ -37,10 +36,6 @@ public class Comanda {
         return DataPrenotazione;
     }
 
-    public Date getDataRitiro() {
-        return DataRitiro;
-    }
-
     public float getImporto() {
         return importo;
     }
@@ -68,7 +63,6 @@ public class Comanda {
         return "Comanda{" +
                 "idComanda=" + idComanda +
                 ", DataPrenotazione=" + DataPrenotazione +
-                ", DataRitiro=" + DataRitiro +
                 ", importo=" + importo +
                 ", indirizzoConsegna='" + indirizzoConsegna + '\'' +
                 ", metodoPagamento='" + pagamento + '\'' +

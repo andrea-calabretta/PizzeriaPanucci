@@ -8,7 +8,7 @@ import pizzeriaPanucci.Pizza;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TestGestisciComanda {
+public class GestisciComanda {
     public static void main(String[] args) {
         System.out.println("Test Gestisci Comanda");
 
@@ -103,22 +103,6 @@ public class TestGestisciComanda {
         } else {
             System.out.println("Non hai inserito una pizza valida");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

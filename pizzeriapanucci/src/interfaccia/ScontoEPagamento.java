@@ -5,7 +5,7 @@ import pizzeriaPanucci.PanucciSystem;
 import java.util.List;
 import pizzeriaPanucci.Pizza;
 
-public class TestScontoEPagamento {
+public class ScontoEPagamento {
     public static void main(String[] args) {
         PanucciSystem PnS= PanucciSystem.getIstance();
         /*System.out.println("Test Pagamento e sconto");

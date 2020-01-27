@@ -7,7 +7,7 @@ import pizzeriaPanucci.Pizza;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TestInserimentoPizza {
+public class InserimentoPizza {
     public static void main(String[] args) {
 
         PanucciSystem PnS= PanucciSystem.getIstance();

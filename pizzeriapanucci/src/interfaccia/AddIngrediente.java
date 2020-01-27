@@ -5,15 +5,13 @@ import pizzeriaPanucci.PanucciSystem;
 
 import java.util.Scanner;
 
-public class TestAddIngrediente {
+public class AddIngrediente {
     public static void main(String[] args) {
 
         System.out.println("Test Add Ingrediente");
         PanucciSystem PnS= PanucciSystem.getIstance();
 
         System.out.println("Ecco gli ingredienti disponibili nel Menù:");
-
-
 
 
         System.out.println("Inserisci nome ingrediente:");

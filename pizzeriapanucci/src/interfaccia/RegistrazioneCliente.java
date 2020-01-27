@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.lang.Integer;
 
 
-public class TestRegistrazioneCliente {
+public class RegistrazioneCliente {
     public static void main(String[] args) {
         PanucciSystem PnS= PanucciSystem.getIstance();
         System.out.println("Test Registrazione pizzeriaPanucci.Cliente");
