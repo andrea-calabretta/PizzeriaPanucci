@@ -5,13 +5,14 @@ import com.mysql.cj.xdevapi.Client;
 import java.util.*;
 
 public class PanucciSystem {
-    /* istanza singleton di BookBoutique */
+    /* istanza singleton di PanucciSystem */
     private static PanucciSystem instance;
     private static final Object lock = PanucciSystem.class;
     private PanucciSystem() {
     }
 
     private List<Cliente> listaClienti;
+    private List<Sconto> listaSconti;
     private List<Comanda> comande;
     private Comanda comandaCorrente;
     private Menu m;
@@ -29,6 +30,7 @@ public class PanucciSystem {
             if (instance == null){
                 instance = new PanucciSystem();
                 instance.listaClienti = new LinkedList<Cliente>();
+                instance.listaSconti = new LinkedList<Sconto>();
                 instance.comande = new LinkedList<Comanda>();
                 instance.m = Menu.getIstance();
                 instance.updateInitialData();
@@ -53,17 +55,9 @@ public class PanucciSystem {
         for (Cliente c: clienti){
             this.listaClienti.add(c);
         }
-
-
-        /*Cliente c1= new Cliente("mario", "rossi", "mrossi@gmail.com", "via marco polo");
-        this.listaClienti.add(c1);
-        Cliente c2= new Cliente("alfredo", "messina", "alfredomessina@gmail.com", "via alfredo messina");
-        this.listaClienti.add(c2);*/
-
     }
 
     private void caricaPizzeMenu(){
-        //NOTA: Ha senso mettere quantità in pizzeriaPanucci.Ingrediente? Si vedrà negli altri casi d'uso
         Ingrediente funghi=new Ingrediente("funghi", (float) 2.5);
         Ingrediente pomodoro=new Ingrediente("pomodoro", (float) 1.5);
         Ingrediente formaggio=new Ingrediente("formaggio", (float) 1.5);
@@ -75,7 +69,6 @@ public class PanucciSystem {
         m.addIngrediente(3, formaggio);
         m.addIngrediente(4, uovo);
 
-        //Aggiungeremo un costo fisso di manodopera per ogni pizza?
         Pizza p1=new Pizza("capricciosa");
         p1.setId(1);
         p1.addIngrediente(funghi);
@@ -193,23 +186,88 @@ public class PanucciSystem {
         m.addPizzaToMenu(codicePizza, pc);
     }
 
-    public int registrazioneCliente (String nome, String cognome, String email, String indirizzo){
+    public void registrazioneCliente (String nome, String cognome, String email, String indirizzo){
         Cliente cliente=new Cliente(nome, cognome, email, indirizzo);
         DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
         ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
-        int id=clienteDAO.createCliente(cliente);
+        clienteDAO.insertCliente(cliente);
         listaClienti.add(cliente);
-        return id;
+
     }
+
+    public void eliminaCliente (int idCliente){
+        DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+        clienteDAO.deleteCliente(idCliente);
+        Cliente cliente = null;
+        for (Cliente c: listaClienti){
+            if (c.getId()==idCliente) {
+                int id=c.getId();
+                 cliente = getCliente(id);
+            }
+        }
+        try{
+            listaClienti.remove(cliente);
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateCliente (int idCliente, String nuovoNome){
+        Cliente clienteCorrente = null;
+        for (Cliente i: listaClienti){
+            if (i.getId()==idCliente) {
+                int id=i.getId();
+                clienteCorrente = getCliente(id);
+                clienteCorrente.setNome(nuovoNome);
+                DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+                ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+                clienteDAO.updateCliente(clienteCorrente);
+            }
+        }
+    }
+
+    public List<Cliente> getListaCLienti(){
+        DAOFactory mysqlFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+        return clienteDAO.getAllClienti();
+    }
+
+
 
     public boolean effettuaPagamento(String metodoPagamento, String[] infoPagamento) {
         return comandaCorrente.effettuaPagamento(metodoPagamento, infoPagamento);
+    }
+
+    public void inserisciSconto(String nome, float soglia, float riduzione){
+        Sconto s = new ScontoAssoluto(nome, soglia, riduzione);
+        listaSconti.add(s);
+    }
+
+    public void eliminaSconto(String nomeSconto){
+        for (Sconto i: listaSconti){
+            if (i.getNome()== nomeSconto){
+                listaSconti.remove(i);
+            }
+        }
+    }
+
+    public void modificaSconto(String oldNomeSconto, String newNomeSconto){
+        for (Sconto i: listaSconti){
+            if (i.getNome()== oldNomeSconto){
+                i.setNome(newNomeSconto);
+            }
+        }
     }
 
     public float associaSconto() {
             return comandaCorrente.associaSconto();
 
     }
+
+
 
 
     public void removeToPizza(Integer idIngrediente){

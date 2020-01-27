@@ -24,7 +24,7 @@ public class RegistrazioneCliente {
         String mail = input.nextLine();
 
         try {
-            int id=PnS.registrazioneCliente(nome, cognome, telefono, mail);
+            PnS.registrazioneCliente(nome, cognome, telefono, mail);
             System.out.println("Inserimento avvenuto");
 
 

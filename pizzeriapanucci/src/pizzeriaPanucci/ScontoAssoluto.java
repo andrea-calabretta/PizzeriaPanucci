@@ -11,6 +11,8 @@ public class ScontoAssoluto extends Sconto {
         this.riduzione=riduzione;
     }
 
+
+
     @Override
     public float calcolaImportoScontato(float totaleNonScontato) {
         if(totaleNonScontato>soglia){

@@ -97,7 +97,7 @@ public class MySQLClienteDAOImpl implements ClienteDAO {
         return customer;
     }
 
-    public int createCliente(Cliente c) {
+    public int insertCliente(Cliente c) {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
@@ -171,13 +171,13 @@ public class MySQLClienteDAOImpl implements ClienteDAO {
         return false;
     }
 
-    public boolean deleteCliente(Cliente c) {
+    public boolean deleteCliente(int idCliente) {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
             conn = MySQLDAOFactory.createConnection();
             preparedStatement = conn.prepareStatement(DELETE_QUERY);
-            preparedStatement.setInt(1, c.getId());
+            preparedStatement.setInt(1, idCliente);
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {

@@ -1,6 +1,10 @@
-package pizzeriaPanucci;
+package Test;
 
 import org.junit.jupiter.api.Test;
+import pizzeriaPanucci.Cliente;
+import pizzeriaPanucci.Comanda;
+import pizzeriaPanucci.Ingrediente;
+import pizzeriaPanucci.Pizza;
 
 import java.nio.channels.Pipe;
 import java.util.Date;

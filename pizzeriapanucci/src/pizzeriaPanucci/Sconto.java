@@ -5,6 +5,10 @@ public abstract class Sconto {
 
     public abstract float calcolaImportoScontato(float totaleNonScontato);
 
+
+    public  void  setNome(String nome){
+        this.nome = nome;
+    }
     public String getNome() {
         return nome;
     }

@@ -1,6 +1,7 @@
-package pizzeriaPanucci;
+package Test;
 
 import org.junit.jupiter.api.Test;
+import pizzeriaPanucci.CartaDiDebito;
 
 import static org.junit.jupiter.api.Assertions.*;
 

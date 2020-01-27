@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLDAOFactory extends DAOFactory{
-    //OLD DRIVER
-    //public static final String DRIVER = "com.mysql.jdbc.Driver";
-    //NEW DRIVER
+
     public static final String DRIVER ="com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost:3306/pizzeriapanucci?useSSL=false&serverTimezone=UTC";
     public static final String USER = "pizzeriapanucci";

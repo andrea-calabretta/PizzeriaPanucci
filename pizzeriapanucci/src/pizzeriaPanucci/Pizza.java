@@ -8,13 +8,11 @@ public class Pizza {
     private final int idIngrediente;
     private int id;
     private String nome;
-    //private List <pizzeriaPanucci.Ingrediente> ingredientiPizza;
     private HashMap<Integer, Ingrediente> ingredientiPizza;
     private float importo;
 
     public Pizza(String nome) {
         this.nome=nome;
-        //this.ingredientiPizza = new LinkedList<pizzeriaPanucci.Ingrediente>();
         this.ingredientiPizza=new HashMap<Integer, Ingrediente>();
         idIngrediente=count.incrementAndGet();
     }

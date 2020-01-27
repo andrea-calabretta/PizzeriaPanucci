@@ -1,4 +1,6 @@
-package pizzeriaPanucci;
+package Test;
+
+import pizzeriaPanucci.ScontoAssoluto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
