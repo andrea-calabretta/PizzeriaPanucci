@@ -1,6 +1,6 @@
 # PizzeriaPanucci
 
-
+![alt text](https://github.com/antromeo/PizzeriaPanucci/blob/master/PizzeriaPanucci_img.jpg)
 ## Configurazione Database
 
 Per la persistenza abbiamo usato MySQL.
