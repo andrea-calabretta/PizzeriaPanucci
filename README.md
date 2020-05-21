@@ -1,5 +1,7 @@
 # PizzeriaPanucci
 
+Progetto per la materia di Ingegneria del Software.
+
 ![alt text](https://github.com/antromeo/PizzeriaPanucci/blob/master/PizzeriaPanucci_img.jpg)
 ## Configurazione Database
 
